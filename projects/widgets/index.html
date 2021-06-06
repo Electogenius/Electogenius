@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Widgets</title>
+	<style type="text/css" media="all">
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+		}
+		body[dark]{
+			background-color: black;
+			color: white;
+		}
+		h1{
+			margin: 0px;
+		}
+		#add{
+			right:0;
+			margin-right: 20px;
+			background-color: limegreen;
+			padding: 10px;
+			border-radius: 50px;
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			padding-bottom: 15px;
+			padding-top: 5px;
+			color: white;
+		}
+		#addmenu{
+			position: fixed;
+			background-color: rgba(122,122,122,0.9);
+			color: white;
+			width: 99%;
+			height: 100%;
+			top:0;
+			left: 0;
+			padding: 10px;
+			transition: 0.5s
+		}
+		#close{
+			position: absolute;
+			right: 30px;
+			top: 0px;
+			color: red;
+			margin: 0;
+			display: inline;
+		}
+		o{
+			display: block;
+			background-color: black;
+			padding: 10px;
+			width: 50%;
+			text-align: center;
+			transform: translateX(-50%);
+			margin-left: 50vw;
+			border-radius: 5px;
+			margin-top: 10px;
+		}
+		.center{
+			align-items: center;
+			align-self: center;
+		}
+		wid{
+			display: block;
+			border-radius: 5px;
+			border: 2px solid grey;
+			padding: 5px;
+			margin-top: 10px;
+		}
+		iframe{
+			height: 50vw;
+			/*width: 95vw;*/
+			border-radius: 5px;
+			border: 2px solid grey;
+			margin-top: 10px;
+			display: block;
+		}
+		.handle{
+			right: 30px;
+			position: absolute;
+			color: grey;
+			font-size: 30px;
+		}
+		.ghost{
+			background-color: rgba(0,50,255,0.5)
+		}
+		.dragged{
+			background-color: rgba(0,0,0,0.5)
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js" integrity="sha512-5x7t0fTAVo9dpfbp3WtE2N6bfipUwk7siViWncdDoSz2KwOqVC1N9fDxEOzk0vTThOua/mglfF8NO7uVDLRC8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body dark>
+	<h1>Widgets<span id="add">+</span></h1>
+	<div id="widgets"></div>
+	<div id="addmenu" style="transform: scale(0)">
+		<h1 id="close" onclick="this.parentNode.style.transform='scale(0)'">×</h1>
+		<h1>Add new widget</h1>
+		<div class="center">
+			<o id="time" onclick="add('time')">Clock</o>
+			<o id="yt" onclick="add('yt')">YouTube player</o>
+			<o id="weather" onclick="add('weather')">Weather</o>
+		</div>
+	</div>
+	<script src="./script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
