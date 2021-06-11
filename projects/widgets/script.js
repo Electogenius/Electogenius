@@ -26,11 +26,26 @@ let ws = {
 	yt: function(){
 		let r = prompt("Video ID?")
 		if(r!==null){
+			let x = widget()
+			x.style.padding = "0"
 			let e = document.createElement("iframe")
 			e.src="https://www.youtube.com/embed/"+r
-			wid.appendChild(e)
+			x.appendChild(e)
+			wid.appendChild(x)
 		}
 	},
+	custom: function(){
+		let r = prompt("Enter HTML code")
+		if (r !== null) {
+			let x = widget()
+			x.style.padding="0"
+			let e = document.createElement("iframe")
+			e.sandbox="allow-scripts"
+			e.srcdoc = r
+			x.appendChild(e)
+			wid.appendChild(x)
+		}
+	}
 	/*weather: function(){
 		//let e = widget()
 		if("geolocation" in navigator){

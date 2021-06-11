@@ -72,12 +72,18 @@
 			margin-top: 10px;
 		}
 		iframe{
-			height: 50vw;
-			/*width: 95vw;*/
+			/*height: 50vw;
+			/*width: 95vw;* \/
 			border-radius: 5px;
 			border: 2px solid grey;
 			margin-top: 10px;
-			display: block;
+			display: block;*/
+			border: none;
+			background-color: white;
+			margin: 0px;
+			width: 100%;
+			height: 100%;
+			border-radius: 5px;
 		}
 		.handle{
 			right: 30px;
@@ -104,6 +110,7 @@
 		<div class="center">
 			<o id="time" onclick="add('time')">Clock</o>
 			<o id="yt" onclick="add('yt')">YouTube player</o>
+			<o id="custom" onclick="add('custom')">Custom widget</o>
 		</div>
 	</div>
 	<script src="./script.js" type="text/javascript" charset="utf-8"></script>
