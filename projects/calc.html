@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=0">
+    <title>Calculator</title>
+</head>
+<style type="text/css" media="all">
+	body, button, input{
+		font-size: clamp(20px, 5vw, 30px);
+		font-family: system-ui, sans-serif;
+		background-color: #222;
+		color: white;
+		border-radius: 0px;
+		font-weight: 300;
+	}
+	button{
+		font-size: inherit;
+		border-radius: 200px;
+		background-color: darkorange;
+		padding: 20px;
+		border: none
+	}
+	.num{
+		background-color: #444;
+	}
+	.gridbox{
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		grid-gap: 15px;
+		margin-top: 20px;
+	}
+	input{
+		font-size: clamp(30px, 10vw, 40px);
+		display: block;
+		margin: none;
+		left: 0;
+		border-radius: 200px;
+		width: 90%;
+		border: 1px solid white;
+		caret-color: darkorange;
+		outline: none;
+	}
+	main{
+		width: clamp(300px, 40vw, 100vw);
+		background-color: black;
+		position: absolute;
+		left: 50vw;
+		transform: translate(-50%,-60%);
+		top: 50vh;
+		padding: 5px;
+		border-radius: 20px;
+	}
+</style>
+<body>
+	<main id="main">
+		<form onsubmit="event.preventDefault();try{document.getElementById('num').value = eeval(document.getElementById('num').value)}catch(er){document.getElementById('num').value = 'syntax error';console.log(er)}">
+			<input id=num autocomplete="off" autocapitalize="off"></input>
+		</form>
+		<div class=gridbox id=keys></div>
+	</main>
+</body>
+<script type="text/javascript" charset="utf-8">
+	function eeval(c){
+		return(new Function("window","document","with(Math){return("+c.replace(/[\'\"\;]/gm,"")+")}")())
+	}
+	var test = ""
+	window.onload = function(){
+		var keys = ["⌫", "RN", "(", ")", 1,2,3,"+",4,5,6,"-",7,8,9,"×","÷",0,"=", ".", "CL", "↺", "?"]
+		for(ki in keys){
+			var key = keys[ki]
+			var node = document.createElement("button")
+			node.innerHTML = key
+			node.a = key //addition
+			node.e = function(){}
+			if(typeof key == "number"){
+				node.classList.add("num")
+			}else{
+				switch(key){
+					case '×':
+						node.a = "*"
+						break;
+					case '÷':
+						node.a = "/"
+						break;
+					case "RN":
+						node.a = "random()"
+						break;
+					case "⌫":
+						node.a = ""
+						node.e = function(){document.getElementById('num').value = document.getElementById('num').value.slice(0, document.getElementById('num').value.length-1)}
+						break;
+					case "=":
+						node.a=""
+						node.e = function(){try{document.getElementById('num').value = eeval(document.getElementById('num').value)}catch(er){document.getElementById('num').value = "syntax error";console.log(er.message)}}
+						break;
+					case "CL":
+					node.a=""
+					node.e = function(){document.getElementById('num').value = ""}
+					break;
+				case "↺":
+					node.a = ""
+					node.e = function(){document.getElementById('num').value = test}
+					break;
+				case "?":
+					node.a = ""
+					node.e=function(){
+						let e=Object.getOwnPropertyNames(Math)
+						alert("List of constants: \n"+e.filter(e=>e==e.toUpperCase()).join("\n")+"\n\nList of functions:\n"+e.filter(e=>e==e.toLowerCase()).join("\n")+"\n\nFunctions must be in the format of functionname(number, anotherNumber ...).")
+					}
+				}
+			}
+			node.onclick = function(){document.getElementById('num').value += this.a; this.e(); test += this.a}
+			document.getElementById('keys').appendChild(node)
+		}
+	}
+</script>
+</html>

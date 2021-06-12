@@ -14,3 +14,4 @@
   '''
   ```
 - widgets: honestly I'm not sure
+- calc: a basic-ish calculator I made
