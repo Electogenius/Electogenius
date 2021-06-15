@@ -4,14 +4,15 @@ document.getElementById("add").onclick = () => {
 
 function widget() {
 	let e = document.createElement("wid");
-	e.innerHTML = "<span class='handle'>||</span>"
+	e.innerHTML = "<span class='handle' ondblclick='r(this)'>||</span>"
 	return e
 }
 new Sortable(document.getElementById("widgets"), {
 	animation: 200,
 	handle: ".handle",
 	ghostClass: "ghost",
-	dragClass: "dragged"
+	dragClass: "dragged",
+	onEnd: s
 })
 let wid = document.getElementById("widgets")
 let ws = {
@@ -88,6 +89,16 @@ setInterval(() => {
 }, 1000)
 
 function add(w) {
-	if (!(w in ws)) { alert("Oops, this widget is not implemented yet") } else { ws[w]() }
+	if (!(w in ws)) { alert("Oops, this widget is not implemented yet") } else { ws[w](); s()  }
 	document.getElementById("addmenu").style.transform = "scale(0)"
+}
+function s(){
+	localStorage.widgets=wid.innerHTML
+}
+if(localStorage.getItem("widgets")!==null){
+	wid.innerHTML = localStorage.widgets
+}
+function r(e){
+	e.parentNode.remove()
+	s()
 }

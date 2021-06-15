@@ -100,6 +100,10 @@
 		wid.calc{
 			height: 90vh;
 		}
+		.down{
+			position: absolute;
+			bottom: 50px
+		}
 	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js" integrity="sha512-5x7t0fTAVo9dpfbp3WtE2N6bfipUwk7siViWncdDoSz2KwOqVC1N9fDxEOzk0vTThOua/mglfF8NO7uVDLRC8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -115,6 +119,7 @@
 			<o id="yt" onclick="add('yt')">YouTube player</o>
 			<o id="custom" onclick="add('custom')">Custom widget</o>
 			<o id="calc" onclick="add('calculator')">Calculator</o>
+			<span class="down">To remove a widget, double tap its handle</span>
 		</div>
 	</div>
 	<script src="./script.js" type="text/javascript" charset="utf-8"></script>
