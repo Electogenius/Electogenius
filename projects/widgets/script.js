@@ -12,7 +12,9 @@ new Sortable(document.getElementById("widgets"), {
 	handle: ".handle",
 	ghostClass: "ghost",
 	dragClass: "dragged",
-	onEnd: s
+	onEnd: s,
+	delay: 100,
+	delayOnTouchOnly: false,
 })
 let wid = document.getElementById("widgets")
 let ws = {
