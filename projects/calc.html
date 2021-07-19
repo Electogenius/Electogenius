@@ -19,8 +19,8 @@
 		font-size: inherit;
 		border-radius: 200px;
 		background-color: darkorange;
-		padding: 20px;
-		border: none
+		padding: clamp(10px, 3vw, 20px);
+		border: none;
 	}
 	.num{
 		background-color: #444;
@@ -44,6 +44,7 @@
 	}
 	main{
 		width: clamp(300px, 40vw, 100vw);
+		height: auto;
 		background-color: black;
 		position: absolute;
 		left: 50vw;
@@ -53,6 +54,7 @@
 		border-radius: 20px;
 	}
 </style>
+
 <body>
 	<main id="main">
 		<form onsubmit="event.preventDefault();try{document.getElementById('num').value = eeval(document.getElementById('num').value)}catch(er){document.getElementById('num').value = 'syntax error';console.log(er)}">
@@ -63,9 +65,16 @@
 </body>
 <script type="text/javascript" charset="utf-8">
 	function eeval(c){
-		return(new Function("window","document","with(Math){return("+c.replace(/[\'\"\;]/gm,"")+")}")())
+		return(new Function("window","document","with(Math){return("+c.replace(/['";\\`\{\}]/gm,"")+")}")())
 	}
 	var test = ""
+	function m(a=0,b,c){
+		if(c){return a+(b/c)}else{return a/b}
+	}
+	function f(a,b=1){
+		return a/b
+	}
+	//console.log(Expression)
 	window.onload = function(){
 		var keys = ["⌫", "RN", "(", ")", 1,2,3,"+",4,5,6,"-",7,8,9,"×","÷",0,"=", ".", "CL", "↺", "?"]
 		for(ki in keys){
