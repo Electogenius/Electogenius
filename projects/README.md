@@ -7,7 +7,7 @@
   if(True){
   	print("hello pyth(){n}!")
   }
-  let x = '''{#
+  x = '''{#
   	"name": "e",
   	"address": "#123 45th ave. new Yorkinghamshire"
   }#

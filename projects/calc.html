@@ -65,7 +65,7 @@
 </body>
 <script type="text/javascript" charset="utf-8">
 	function eeval(c){
-		return(new Function("window","document","with(Math){return("+c.replace(/['";\\`\{\}]/gm,"")+")}")())
+		return(new Function("window","document","with(Math){return("+c.replace(/['";\\`\{\}]/gm,"")+")}").bind(Math)())
 	}
 	var test = ""
 	function m(a=0,b,c){
