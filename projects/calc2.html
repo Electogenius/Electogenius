@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.css" integrity="sha512-vPg9GqsZZ4LHv9BkFfZSXt7y4D7YaARPU2JFmpZug4EgtJJrumytMAFZkNSk2LSyqWir0TNbh2tBq7UJIMxvlA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js" integrity="sha512-Qsh05D07P6dURSZn8Qk+j8GI7cEK0OhXleZvTofmucwoDSkBC0juWf1401JdSE8os2kWEezMu7e9mlnszm3yEw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/evaluatex@latest/dist/evaluatex.min.js"></script>
+    <style type="text/css" media="all">
+        .ok {
+            background-color: green
+        }
+
+        .ow {
+            background-color: orangered
+        }
+
+        #output {
+            padding: 5px;
+            overflow: auto
+        }
+
+        * {
+            font-size: 15px;
+            color:white;
+            border-color: white !important;
+        }
+        body{
+            background-color: #000;
+        }
+        #span{
+            transform: scale(2);
+            margin:50px;
+        }
+        #span, button, #output{
+            border-radius: 5px
+        }
+    </style>
+</head>
+
+<body>
+    <span id=span></span>
+    <br /><button onclick="run()" style="background-color: #222">=</button>
+    <br />
+    <pre id=output></pre>
+    <script>
+        let MQ = MathQuill.getInterface(2)
+        let field = MQ.MathField(span, {
+            spaceBehavesLikeTab: true,
+            fontSize: 20
+        })
+        function run() {
+            let res
+            try {
+                res = evaluatex(field.latex().replace(/\\(pi)/,"$1 "))({
+                    "pi":3.1415926535
+                })
+                output.innerText = `Result: ${res}`
+                output.className = "ok"
+            } catch (e) {
+                output.innerText = `Latex: "${field.latex()}"\n${e}`
+                output.className = "ow"
+            }
+        }
+    </script>
+</body>
+
+</html>
